@@ -47,7 +47,7 @@ void* bogosort_worker(void* arg) {
             pthread_mutex_lock(&found_mutex);
             if (!found_sorted) {
                 found_sorted = 1;
-                printf("\n🐧 Thread %ld sorted it in %d tries!\n", (long)arg, tries);
+                printf("\nThread %ld sorted it in %d tries!\n", (long)arg, tries);
                 printf("Sorted list: ");
                 for (int i = 0; i < ARRAY_SIZE; i++) {
                     printf("%d ", copy[i]);
@@ -67,7 +67,7 @@ int main() {
     srand(time(NULL));
     pthread_t threads[THREAD_COUNT];
 
-    clock_t start_time = clock();  // ⏱️ Start timing
+    clock_t start_time = clock();  // Start timing
 
     printf("Starting %d threads to bogo-sort...\n", THREAD_COUNT);
 
@@ -79,7 +79,7 @@ int main() {
         pthread_join(threads[i], NULL);
     }
 
-    clock_t end_time = clock();  // ⏱️ End timing
+    clock_t end_time = clock();  // End timing
     double time_used = (double)(end_time - start_time) / CLOCKS_PER_SEC;
 
     printf("The threads have finished their work.\n");
