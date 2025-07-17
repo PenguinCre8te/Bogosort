@@ -5,9 +5,8 @@
 #include <unistd.h>
 
 #define THREAD_COUNT 8
-#define ARRAY_SIZE 11
 
-int original[ARRAY_SIZE] = {3, 5, 2, 9, 1, 4, 7, 8, 10, 6, 7};
+int original[] = {3, 5, 2, 9, 1, 4, 7, 8, 10, 6, 7};
 int found_sorted = 0;
 pthread_mutex_t found_mutex = PTHREAD_MUTEX_INITIALIZER;
 
@@ -70,7 +69,7 @@ int main() {
 
     clock_t start_time = clock();  // ⏱️ Start timing
 
-    printf("🔁 Starting %d penguin threads to bogo-sort...\n", THREAD_COUNT);
+    printf("Starting %d threads to bogo-sort...\n", THREAD_COUNT);
 
     for (long i = 0; i < THREAD_COUNT; i++) {
         pthread_create(&threads[i], NULL, bogosort_worker, (void*)i);
@@ -83,8 +82,8 @@ int main() {
     clock_t end_time = clock();  // ⏱️ End timing
     double time_used = (double)(end_time - start_time) / CLOCKS_PER_SEC;
 
-    printf("❄️ The penguins have finished their disorderly work.\n");
-    printf("⏳ Time taken: %.2f seconds\n", time_used);  // Print the time used
+    printf("The threads have finished their work.\n");
+    printf("Time taken: %.2f seconds\n", time_used);  // Print the time used
 
     return 0;
 }
